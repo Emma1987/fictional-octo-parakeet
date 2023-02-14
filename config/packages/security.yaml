@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@EckinoxSecurityBundle/config/packages/security.yaml" }

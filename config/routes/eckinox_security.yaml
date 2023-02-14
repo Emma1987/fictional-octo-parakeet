@@ -1,0 +1,2 @@
+eckinox_security:
+    resource: "@EckinoxSecurityBundle/config/routes.yaml"
