@@ -1,0 +1,33 @@
+{% extends '@EckinoxAdminUi/base.html.twig' %}
+
+{%- block title -%}
+	{% trans %}website.list.title{% endtrans %}
+{%- endblock -%}
+
+{% block content %}
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					{% embed "@EckinoxAdminUi/widgets/listing.html.twig" with {
+						data: websites,
+						entity: 'website',
+						columns: [
+							'name',
+							'url',
+							'averageRating',
+						],
+						datatable: {
+							search_by_column: true,
+							attributes: {
+								'data-order': '[[ 2, "desc" ]]',
+								'data-page-length': '10',
+							}
+						}
+					} %}
+					{% endembed %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+website:
+    list:
+        title: 'Liste des sites'
+    fields:
+        name: 'Nom du site'
+        url: 'URL du site'
+        average_rating: 'Note moyenne'
