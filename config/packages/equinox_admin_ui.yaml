@@ -8,3 +8,7 @@ eckinox_admin_ui:
                             label: Sites / Applications
                             icon: star
                             route_name: website_list
+                        category:
+                            label: Catégories
+                            icon: list
+                            route_name: category_list

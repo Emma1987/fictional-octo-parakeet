@@ -5,3 +5,10 @@ website:
         name: 'Nom du site'
         url: 'URL du site'
         average_rating: 'Note moyenne'
+        category:
+            name: 'Catégorie'
+category:
+    list:
+        title: 'Liste des catégories'
+    fields:
+        name: 'Nom de la catégorie'

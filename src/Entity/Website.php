@@ -33,6 +33,11 @@ class Website
 	 */
 	private Collection $reviews;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="websites")
+	 */
+	private Category $category;
+
 	public function __construct()
 	{
 		$this->reviews = new ArrayCollection();
@@ -92,5 +97,16 @@ class Website
 		});
 
 		return round(($ratings / $this->reviews->count()), 1);
+	}
+
+	public function getCategory(): Category
+	{
+		return $this->category;
+	}
+
+	public function setCategory(Category $category): self
+	{
+		$this->category = $category;
+		return $this;
 	}
 }
