@@ -1,0 +1,46 @@
+{% extends '@EckinoxAdminUi/base.html.twig' %}
+
+{%- block title -%}
+	{% trans %}website.list.title_by_category{% endtrans %}
+{%- endblock -%}
+
+{% block content %}
+	<a href="{{ path('website_list') }}">
+		{% trans %}website.list.global_list_link{% endtrans %}
+	</a>
+
+	<div class="row">
+		<div class="col-12">
+			{% for category in categories %}
+				{% set websites = category.websites %}
+
+				<div class="card">
+					<div class="card-body">
+						<h2>
+							<span class="badge bg-info">{{ category.name }}</span>
+						</h2>
+
+						{% embed "@EckinoxAdminUi/widgets/listing.html.twig" with {
+							data: websites,
+							entity: 'website',
+							class: 'table-hover',
+							columns: [
+								'name',
+								'url',
+								'averageRating',
+							],
+							datatable: {
+								search_by_column: true,
+								attributes: {
+									'data-order': '[[ 2, "desc" ]]',
+									'data-page-length': '10',
+								}
+							}
+						} %}
+						{% endembed %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
