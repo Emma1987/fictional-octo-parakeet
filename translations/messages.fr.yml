@@ -1,6 +1,9 @@
 website:
     list:
-        title: 'Liste des sites'
+        title_global: 'Liste des sites globale'
+        title_by_category: 'Liste des sites par catégorie'
+        global_list_link: Voir la liste globale
+        list_by_category_link: Voir la liste par catégorie
     fields:
         name: 'Nom du site'
         url: 'URL du site'

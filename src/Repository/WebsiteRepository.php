@@ -20,4 +20,17 @@ class WebsiteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Website::class);
     }
+
+	/**
+	 * @return Website[]
+	 */
+	public function findAllWithReviewAndCategory(): array
+	{
+		return $this->createQueryBuilder('w')
+			->leftJoin('w.reviews', 'r')
+			->leftJoin('w.category', 'c')
+			->select('w, r, c')
+			->getQuery()
+			->getResult();
+	}
 }
