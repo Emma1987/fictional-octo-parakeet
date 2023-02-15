@@ -1,0 +1,10 @@
+eckinox_admin_ui:
+    menus:
+        multilevel:
+            sidebar:
+                dashboard:
+                    children:
+                        list:
+                            label: Sites / Applications
+                            icon: star
+                            route_name: website_list
