@@ -1,7 +1,7 @@
 {% extends '@EckinoxAdminUi/base.html.twig' %}
 
 {%- block title -%}
-	{% trans %}website.list.title{% endtrans %}
+	{% trans %}category.list.title{% endtrans %}
 {%- endblock -%}
 
 {% block content %}
@@ -10,22 +10,19 @@
 			<div class="card">
 				<div class="card-body">
 					{% embed "@EckinoxAdminUi/widgets/listing.html.twig" with {
-						data: websites,
-						entity: 'website',
+						data: categories,
+						entity: 'category',
 						class: 'table-hover',
 						columns: [
-							'name',
 							{
-								name: 'category.name',
-								template: 'website/_column-category-name.html.twig',
-							},
-							'url',
-							'averageRating',
+								name: 'name',
+								template: 'category/_column-name.html.twig',
+							}
 						],
 						datatable: {
 							search_by_column: true,
 							attributes: {
-								'data-order': '[[ 3, "desc" ]]',
+								'data-order': '[[ 0, "asc" ]]',
 								'data-page-length': '10',
 							}
 						}
