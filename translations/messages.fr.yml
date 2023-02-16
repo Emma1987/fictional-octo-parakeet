@@ -10,8 +10,26 @@ website:
         average_rating: 'Note moyenne'
         category:
             name: 'Catégorie'
+    view:
+        title: 'Site - %name%'
+        back_to_list: 'Retour à la liste des sites / applications'
+        website_card:
+            title: 'Présentation du site'
+            averageRating: '%rating%/10'
+            noRating: 'Non encore noté'
+        review_card:
+            title: 'Laisser un avis'
+        community_card:
+            title: 'Les avis de la communauté'
+            author: 'Posté par %firstName% %lastName%'
 category:
     list:
         title: 'Liste des catégories'
     fields:
         name: 'Nom de la catégorie'
+
+review:
+    fields:
+        comment: 'Commentaire'
+        rating: 'Note'
+

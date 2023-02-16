@@ -1,0 +1,78 @@
+{% extends '@EckinoxAdminUi/base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/review.css") }}">
+{% endblock %}
+
+{%- block title -%}
+	{% trans with {"%name%": website.name} %}website.view.title{% endtrans %}
+{%- endblock -%}
+
+{% block actions %}
+	<a href="{{ path('website_list') }}" class="btn btn-secondary">
+		<i class="fas fa-caret-left me-2"></i>
+		{% trans %}website.view.back_to_list{% endtrans %}
+	</a>
+{% endblock %}
+
+{% block content %}
+	<div class="d-flex flex-column flex-md-row">
+		<div class="card me-md-3 mb-3 min-width-50">
+			<div class="card-header pb-1">
+				<span class="h4">{% trans %}website.view.website_card.title{% endtrans %}</span>
+			</div>
+			<div class="card-body">
+				<div class="mb-2">
+					<i class="me-2" data-feather="target"></i>{{ website.name }}
+				</div>
+				<div class="mb-2">
+					<i class="me-2" data-feather="link"></i>
+					<a href="{{ website.url }}" target="_blank">{{ website.url }}</a>
+				</div>
+				<div class="mb-2">
+					<i class="me-2" data-feather="star"></i>
+					{% if website.averageRating %}
+						{% trans with {"%rating%": website.averageRating} %}
+							website.view.website_card.averageRating
+						{% endtrans %}
+					{% else %}
+						{% trans %}website.view.website_card.noRating{% endtrans %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="card flex-fill mb-3">
+			<div class="card-header pb-1">
+				<span class="h4">{% trans %}website.view.review_card.title{% endtrans %}</span>
+			</div>
+			<div class="card-body">
+				{{ form(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header pb-1">
+			<span class="h4">{% trans %}website.view.community_card.title{% endtrans %}</span>
+		</div>
+		<div class="card-body">
+			{% for review in website.reviews %}
+				<div class="single-review">
+					<div class="d-flex align-items-center mb-2">
+						<span class="me-1 mt-1">{{ review.rating }}</span><i data-feather="star"></i>
+						<span class="mx-1">-</span>
+						<em>
+							{% trans with {
+								"%firstName%": review.user.firstName,
+								"%lastName%": review.user.lastName|u.truncate(2, '.')
+							} %}website.view.community_card.author{% endtrans %}
+						</em>
+					</div>
+					{{ review.comment|raw }}
+					{% if not loop.last %}
+						<hr/>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

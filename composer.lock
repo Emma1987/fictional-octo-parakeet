@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "341a4da1316f98e031ca751b36fbdafd",
+    "content-hash": "0e54458fbf4bc74eabab9303da927109",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1637,6 +1637,52 @@
                 "issues": "https://github.com/eckinox/security-bundle/issues"
             },
             "time": "2022-09-29T12:03:05+00:00"
+        },
+        {
+            "name": "eckinox/tinymce-bundle",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eckinox/tinymce-bundle.git",
+                "reference": "85efd8e09e30277c7e3f1e400c4a547292eafb9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eckinox/tinymce-bundle/zipball/85efd8e09e30277c7e3f1e400c4a547292eafb9b",
+                "reference": "85efd8e09e30277c7e3f1e400c4a547292eafb9b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/dependency-injection": "^4.0|^5.0|^6.0",
+                "symfony/form": "^4.0|^5.0|^6.0",
+                "symfony/http-foundation": "^4.0|^5.0|^6.0",
+                "symfony/http-kernel": "^4.0|^5.0|^6.0",
+                "symfony/routing": "^4.0|^5.0|^6.0",
+                "twig/twig": "^3.3"
+            },
+            "require-dev": {
+                "eckinox/eckinox-cs": ">=1.2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Eckinox\\TinymceBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Émile Perron",
+                    "email": "contact@emileperron.com"
+                }
+            ],
+            "description": "A Symfony bundle to add TinyMCE in your apps and forms.",
+            "support": {
+                "issues": "https://github.com/eckinox/tinymce-bundle/issues",
+                "source": "https://github.com/eckinox/tinymce-bundle/tree/v0.1.5"
+            },
+            "time": "2022-05-11T19:17:31+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -9399,6 +9445,78 @@
             ],
             "support": {
                 "source": "https://github.com/twigphp/inky-extra/tree/v3.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-08T07:44:55+00:00"
+        },
+        {
+            "name": "twig/string-extra",
+            "version": "v3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/string-extra.git",
+                "reference": "e8403cf7140319917577604be406dfb371246437"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/string-extra/zipball/e8403cf7140319917577604be406dfb371246437",
+                "reference": "e8403cf7140319917577604be406dfb371246437",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/string": "^5.0|^6.0",
+                "symfony/translation-contracts": "^1.1|^2|^3",
+                "twig/twig": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Twig\\Extra\\String\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "A Twig extension for Symfony String",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "html",
+                "string",
+                "twig",
+                "unicode"
+            ],
+            "support": {
+                "source": "https://github.com/twigphp/string-extra/tree/v3.5.1"
             },
             "funding": [
                 {

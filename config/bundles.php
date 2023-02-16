@@ -22,4 +22,5 @@ return [
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
     Eckinox\AdminUiBundle\EckinoxAdminUiBundle::class => ['all' => true],
     Eckinox\AppBundle\EckinoxAppBundle::class => ['all' => true],
+    Eckinox\TinymceBundle\TinymceBundle::class => ['all' => true],
 ];

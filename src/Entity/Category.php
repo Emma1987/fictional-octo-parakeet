@@ -16,12 +16,12 @@ class Category
 	 * @ORM\GeneratedValue
 	 * @ORM\Column(type="integer")
 	 */
-    private int $id;
+    private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="string", length=80, unique=true)
 	 */
-	private string $name;
+	private ?string $name = null;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Website", mappedBy="category")
@@ -38,7 +38,7 @@ class Category
         return $this->id;
     }
 
-	public function getName(): string
+	public function getName(): ?string
 	{
 		return $this->name;
 	}

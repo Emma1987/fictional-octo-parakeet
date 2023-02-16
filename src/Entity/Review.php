@@ -15,27 +15,27 @@ class Review
 	 * @ORM\GeneratedValue
 	 * @ORM\Column(type="integer")
 	 */
-	private int $id;
+	private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	private string $comment;
+	private ?string $comment = null;
 
 	/**
 	 * @ORM\Column(type="integer")
 	 */
-	private int $rating;
+	private ?int $rating = null;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Security\User")
 	 */
-	private User $user;
+	private ?User $user = null;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Website", inversedBy="reviews")
 	 */
-	private Website $website;
+	private ?Website $website = null;
 
     public function getId(): ?int
     {
@@ -53,7 +53,7 @@ class Review
 		return $this;
 	}
 
-	public function getRating(): int
+	public function getRating(): ?int
 	{
 		return $this->rating;
 	}

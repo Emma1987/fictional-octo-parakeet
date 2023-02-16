@@ -4,11 +4,14 @@
 	{% trans %}website.list.title_by_category{% endtrans %}
 {%- endblock -%}
 
-{% block content %}
-	<a href="{{ path('website_list') }}">
+{% block actions %}
+	<a href="{{ path('website_list') }}" class="btn btn-secondary">
+		<i class="fas fa-caret-right me-2"></i>
 		{% trans %}website.list.global_list_link{% endtrans %}
 	</a>
+{% endblock %}
 
+{% block content %}
 	<div class="row">
 		<div class="col-12">
 			{% for category in categories %}
