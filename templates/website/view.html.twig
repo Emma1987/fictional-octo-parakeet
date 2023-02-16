@@ -17,6 +17,7 @@
 
 {% block content %}
 	<div class="d-flex flex-column flex-md-row">
+		{# Card website #}
 		<div class="card me-md-3 mb-3 min-width-50">
 			<div class="card-header pb-1">
 				<span class="h4">{% trans %}website.view.website_card.title{% endtrans %}</span>
@@ -41,15 +42,26 @@
 				</div>
 			</div>
 		</div>
+		{# Card review form #}
 		<div class="card flex-fill mb-3">
 			<div class="card-header pb-1">
-				<span class="h4">{% trans %}website.view.review_card.title{% endtrans %}</span>
+				<div class="d-flex justify-content-between">
+					<span class="h4">
+						{% trans %}website.view.review_card.title{% endtrans %}
+					</span>
+					{% if reviewId %}
+						<a href="{{ path('review_delete', {id: reviewId}) }}" id="delete-review">
+							<i class="me-2" data-feather="trash-2"></i>
+						</a>
+					{% endif %}
+				</div>
 			</div>
 			<div class="card-body">
 				{{ form(form) }}
 			</div>
 		</div>
 	</div>
+	{# Card reviews #}
 	<div class="card">
 		<div class="card-header pb-1">
 			<span class="h4">{% trans %}website.view.community_card.title{% endtrans %}</span>
@@ -75,4 +87,9 @@
 			{% endfor %}
 		</div>
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/review.js') }}"></script>
 {% endblock %}

@@ -15,21 +15,28 @@ website:
         back_to_list: 'Retour à la liste des sites / applications'
         website_card:
             title: 'Présentation du site'
-            averageRating: '%rating%/10'
+            averageRating: '%rating%/5'
             noRating: 'Non encore noté'
         review_card:
             title: 'Laisser un avis'
         community_card:
             title: 'Les avis de la communauté'
             author: 'Posté par %firstName% %lastName%'
+        confirm_modal:
+            title: 'Supprimer votre avis'
+            text: 'Etes vous sûr de vouloir supprimer votre avis sur ce site ?'
+            confirmBtn: 'Confirmer'
 category:
     list:
         title: 'Liste des catégories'
     fields:
         name: 'Nom de la catégorie'
-
 review:
     fields:
         comment: 'Commentaire'
         rating: 'Note'
+flashMessages:
+    reviewSaved: 'Nous avons bien enregistré votre avis !'
+    reviewDeleted: 'Nous avons bien supprimé votre avis'
+    accessDenied: 'Vous n''avez pas l''autorisation d''effectuer cette action'
 

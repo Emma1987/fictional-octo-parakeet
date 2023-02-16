@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Security\User;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
@@ -18,12 +19,19 @@ class Review
 	private ?int $id = null;
 
 	/**
-	 * @ORM\Column(type="string", length=255)
+	 * @ORM\Column(type="text", length=1000, nullable=true)
+	 * @Assert\Length(
+	 *     max = 1000,
+	 * )
 	 */
 	private ?string $comment = null;
 
 	/**
 	 * @ORM\Column(type="integer")
+	 * @Assert\Range(
+	 *     min = 1,
+	 *     max = 5,
+	 * )
 	 */
 	private ?int $rating = null;
 
@@ -47,7 +55,7 @@ class Review
 		return $this->comment;
 	}
 
-	public function setComment(string $comment): self
+	public function setComment(?string $comment): self
 	{
 		$this->comment = $comment;
 		return $this;
