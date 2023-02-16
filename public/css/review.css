@@ -6,6 +6,10 @@ a {
 	color: goldenrod;
 }
 
+.feather-trash-2 {
+	color: red;
+}
+
 .review .card-header {
 	display: none;
 }

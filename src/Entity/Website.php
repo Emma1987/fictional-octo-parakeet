@@ -119,6 +119,8 @@ class Website
 			}
 		}
 
-		return new Review();
+		return (new Review())
+			->setWebsite($this)
+			->setUser($user);
 	}
 }

@@ -5,21 +5,12 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Website;
 use App\Form\Type\ReviewType;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class WebsiteController extends AbstractController
+class WebsiteController extends AbstractAppController
 {
-	private EntityManagerInterface $entityManager;
-
-	public function __construct(EntityManagerInterface $entityManager)
-	{
-		$this->entityManager = $entityManager;
-	}
-
 	/**
 	 * @Route("/website/{id}", name="website_view")
 	 */
@@ -29,9 +20,18 @@ class WebsiteController extends AbstractController
 		$form = $this->createForm(ReviewType::class, $review);
 		$form->handleRequest($request);
 
+		if ($form->isSubmitted() && $form->isValid()) {
+			$this->entityManager->persist($review);
+			$this->entityManager->flush();
+
+			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
+		}
+
 		return $this->render('website/view.html.twig', [
 			'website' => $website,
 			'form' => $form->createView(),
+			'reviewId' => $review->getId(),
 		]);
 	}
 
