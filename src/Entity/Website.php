@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Security\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,17 +17,17 @@ class Website
 	 * @ORM\GeneratedValue
 	 * @ORM\Column(type="integer")
 	 */
-    private int $id;
+    private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	private string $name;
+	private ?string $name = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255, unique=true)
 	 */
-	private string $url;
+	private ?string $url = null;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="website")
@@ -36,7 +37,7 @@ class Website
 	/**
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="websites")
 	 */
-	private Category $category;
+	private ?Category $category = null;
 
 	public function __construct()
 	{
@@ -85,6 +86,17 @@ class Website
 		return $this;
 	}
 
+	public function getCategory(): ?Category
+	{
+		return $this->category;
+	}
+
+	public function setCategory(Category $category): self
+	{
+		$this->category = $category;
+		return $this;
+	}
+
 	public function getAverageRating(): ?float
 	{
 		if ($this->reviews->isEmpty()) {
@@ -99,14 +111,14 @@ class Website
 		return round(($ratings / $this->reviews->count()), 1);
 	}
 
-	public function getCategory(): Category
+	public function getReviewByUser(User $user): Review
 	{
-		return $this->category;
-	}
+		foreach ($this->reviews as $review) {
+			if ($review->getUser() === $user) {
+				return $review;
+			}
+		}
 
-	public function setCategory(Category $category): self
-	{
-		$this->category = $category;
-		return $this;
+		return new Review();
 	}
 }

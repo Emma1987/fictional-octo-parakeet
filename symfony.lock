@@ -50,6 +50,9 @@
     "eckinox/security-bundle": {
         "version": "v1.2.2"
     },
+    "eckinox/tinymce-bundle": {
+        "version": "v0.1.5"
+    },
     "friendsofsymfony/jsrouting-bundle": {
         "version": "2.8",
         "recipe": {

@@ -4,37 +4,49 @@
 	{% trans %}website.list.title_global{% endtrans %}
 {%- endblock -%}
 
-{% block content %}
-	<a href="{{ path('website_list_by_category') }}">
+{% block actions %}
+	<a href="{{ path('website_list_by_category') }}" class="btn btn-secondary">
+		<i class="fas fa-caret-right me-2"></i>
 		{% trans %}website.list.list_by_category_link{% endtrans %}
 	</a>
+{% endblock %}
 
+{% block content %}
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					{% embed "@EckinoxAdminUi/widgets/listing.html.twig" with {
-						data: websites,
-						entity: 'website',
-						class: 'table-hover',
-						columns: [
-							'name',
-							{
-								name: 'category.name',
-								template: 'website/_column-category-name.html.twig',
+					<div class="table-responsive">
+						{% embed "@EckinoxAdminUi/widgets/listing.html.twig" with {
+							data: websites,
+							entity: 'website',
+							class: 'table-hover',
+							columns: [
+								'name',
+								{
+									name: 'category.name',
+									template: 'website/_column-category-name.html.twig',
+								},
+								'url',
+								'averageRating',
+							],
+							actions: {
+								view: {
+									route_name: 'website_view',
+									route_parameters: {id: 'id'},
+									icon: 'fa-search',
+								},
 							},
-							'url',
-							'averageRating',
-						],
-						datatable: {
-							search_by_column: true,
-							attributes: {
-								'data-order': '[[ 3, "desc" ]]',
-								'data-page-length': '10',
+							datatable: {
+								search_by_column: true,
+								attributes: {
+									'data-order': '[[ 3, "desc" ]]',
+									'data-page-length': '10',
+								}
 							}
-						}
-					} %}
-					{% endembed %}
+						} %}
+						{% endembed %}
+					</div>
 				</div>
 			</div>
 		</div>

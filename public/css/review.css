@@ -1,0 +1,19 @@
+a {
+	color: inherit;
+}
+
+.feather-star {
+	color: goldenrod;
+}
+
+.review .card-header {
+	display: none;
+}
+
+.single-review p {
+	margin-bottom: 0;
+}
+
+.min-width-50 {
+	min-width: 50%;
+}
