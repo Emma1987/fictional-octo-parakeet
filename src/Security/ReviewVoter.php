@@ -3,13 +3,21 @@
 namespace App\Security;
 
 use App\Entity\Review;
-use Eckinox\SecurityBundle\Entity\GenericUserInterface;
+use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Security;
 
 class ReviewVoter extends Voter
 {
 	public const DELETE = 'delete';
+
+	private Security $security;
+
+	public function __construct(Security $security)
+	{
+		$this->security = $security;
+	}
 
 	protected function supports(string $attribute, $subject): bool
 	{
@@ -24,7 +32,7 @@ class ReviewVoter extends Voter
 	{
 		$user = $token->getUser();
 
-		if (!$user instanceof GenericUserInterface) {
+		if (!$user instanceof User) {
 			return false;
 		}
 
@@ -37,8 +45,12 @@ class ReviewVoter extends Voter
 		};
 	}
 
-	private function canDelete(Review $subject, GenericUserInterface $user): bool
+	private function canDelete(Review $subject, User $user): bool
 	{
+		if ($this->security->isGranted('REVIEW_DELETE')) {
+			return true;
+		}
+
 		return $subject->getUser() === $user;
 	}
 }
