@@ -1,14 +1,20 @@
-{% extends '@EckinoxAdminUi/base.html.twig' %}
+{% extends 'base-public.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/main.css") }}">
+{% endblock %}
 
 {%- block title -%}
-	{% trans %}website.list.title_global{% endtrans %}
+	{% trans %}website.list.title{% endtrans %}
 {%- endblock -%}
 
 {% block actions %}
-	<a href="{{ path('website_list_by_category') }}" class="btn btn-secondary">
-		<i class="fas fa-caret-right me-2"></i>
-		{% trans %}website.list.list_by_category_link{% endtrans %}
-	</a>
+	{% if filteredByCategory %}
+		<a href="{{ path('website_list') }}" class="btn btn-secondary">
+			<i class="fas fa-caret-left me-2"></i>
+			{% trans %}website.list.global_list_link{% endtrans %}
+		</a>
+	{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -26,9 +32,18 @@
 								{
 									name: 'category.name',
 									template: 'website/_column-category-name.html.twig',
+									search: {
+										type: 'select',
+										options: websites|getCategoriesFromWebsites(websites),
+									}
 								},
 								'url',
-								'averageRating',
+								{
+									name: 'averageRating',
+									search: {
+										enabled: false,
+									}
+								},
 							],
 							actions: {
 								view: {
@@ -39,6 +54,7 @@
 							},
 							datatable: {
 								search_by_column: true,
+								search_by_column_type: 'header_column',
 								attributes: {
 									'data-order': '[[ 3, "desc" ]]',
 									'data-page-length': '10',

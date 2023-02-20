@@ -1,9 +1,7 @@
 website:
     list:
-        title_global: 'Liste des sites globale'
-        title_by_category: 'Liste des sites par catégorie'
-        global_list_link: Voir la liste globale
-        list_by_category_link: Voir la liste par catégorie
+        title: 'Liste des sites globale'
+        global_list_link: 'Retour à la liste globale'
     fields:
         name: 'Nom du site'
         url: 'URL du site'
@@ -19,6 +17,7 @@ website:
             noRating: 'Non encore noté'
         review_card:
             title: 'Laisser un avis'
+            needAuthentication: 'Connectez-vous pour laisser un avis'
         community_card:
             title: 'Les avis de la communauté'
             author: 'Posté par %firstName% %lastName%'
@@ -39,4 +38,5 @@ flashMessages:
     reviewSaved: 'Nous avons bien enregistré votre avis !'
     reviewDeleted: 'Nous avons bien supprimé votre avis'
     accessDenied: 'Vous n''avez pas l''autorisation d''effectuer cette action'
+    formError: 'Une erreur est survenue...'
 

@@ -20,17 +20,4 @@ class CategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Category::class);
     }
-
-	/**
-	 * @return Category[]
-	 */
-	public function findAllWithWebsites(): array
-	{
-		return $this->createQueryBuilder('c')
-			->leftJoin('c.websites', 'w')
-			->leftJoin('w.reviews', 'r')
-			->select('c, w, r')
-			->getQuery()
-			->getResult();
-	}
 }
