@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Website;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,6 +31,23 @@ class WebsiteRepository extends ServiceEntityRepository
 			->leftJoin('w.reviews', 'r')
 			->leftJoin('w.category', 'c')
 			->select('w, r, c')
+			->getQuery()
+			->getResult();
+	}
+
+	/**
+	 * @return Website[]
+	 */
+	public function findAllByCategoryWithWebsites(Category $category): array
+	{
+		return $this->createQueryBuilder('w')
+			->leftJoin('w.reviews', 'r')
+			->leftJoin('w.category', 'c')
+			->select('w, r, c')
+			->andWhere('w.category = :category')
+			->setParameters([
+				'category' => $category,
+			])
 			->getQuery()
 			->getResult();
 	}

@@ -10,6 +10,10 @@ a {
 	color: red;
 }
 
+.badge a {
+	color: white;
+}
+
 .review .card-header {
 	display: none;
 }
