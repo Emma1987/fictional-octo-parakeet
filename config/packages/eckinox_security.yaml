@@ -1,0 +1,5 @@
+eckinox_security:
+    privileges:
+        review:
+            - EDIT
+            - DELETE

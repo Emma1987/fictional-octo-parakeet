@@ -2,13 +2,12 @@
 
 namespace App\Twig;
 
-use App\Entity\Website;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class WebsiteExtension extends AbstractExtension
 {
-	public function getFilters()
+	public function getFilters(): array
 	{
 		return [
 			new TwigFilter('getCategoriesFromWebsites', [$this, 'getCategoriesFromWebsites']),
