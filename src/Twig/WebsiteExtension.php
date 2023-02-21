@@ -9,6 +9,7 @@ use Twig\TwigFilter;
 
 class WebsiteExtension extends AbstractExtension
 {
+
 	private WebsiteImageStorage $imageStorage;
 
 	public function __construct(WebsiteImageStorage $imageStorage)
@@ -16,7 +17,7 @@ class WebsiteExtension extends AbstractExtension
 		$this->imageStorage = $imageStorage;
 	}
 
-	public function getFilters()
+	public function getFilters(): array
 	{
 		return [
 			new TwigFilter('getCategoriesFromWebsites', [$this, 'getCategoriesFromWebsites']),

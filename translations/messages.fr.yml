@@ -38,9 +38,18 @@ review:
     fields:
         comment: 'Commentaire'
         rating: 'Note'
+    edit:
+        title: 'Éditer un avis'
+        fromWebsite: 'Vous éditez actuellement un avis pour le site <a href="%url%" target="_blank">%name%</a>'
 flashMessages:
     reviewSaved: 'Nous avons bien enregistré votre avis !'
     reviewDeleted: 'Nous avons bien supprimé votre avis'
     accessDenied: 'Vous n''avez pas l''autorisation d''effectuer cette action'
     formError: 'Une erreur est survenue...'
-
+eckinox_security:
+    privilege_groups:
+        review: 'Avis'
+    privileges:
+        review:
+            edit: 'Éditer un avis'
+            delete: 'Supprimer un avis'
