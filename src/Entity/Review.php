@@ -13,13 +13,16 @@ class Review
 {
 	/**
 	 * @ORM\Id
+	 *
 	 * @ORM\GeneratedValue
+	 *
 	 * @ORM\Column(type="integer")
 	 */
 	private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="text", length=1000, nullable=true)
+	 *
 	 * @Assert\Length(
 	 *     max = 1000,
 	 * )
@@ -28,6 +31,7 @@ class Review
 
 	/**
 	 * @ORM\Column(type="integer")
+	 *
 	 * @Assert\Range(
 	 *     min = 1,
 	 *     max = 5,
@@ -45,10 +49,10 @@ class Review
 	 */
 	private ?Website $website = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
 	public function getComment(): ?string
 	{
@@ -58,6 +62,7 @@ class Review
 	public function setComment(?string $comment): self
 	{
 		$this->comment = $comment;
+
 		return $this;
 	}
 
@@ -69,6 +74,7 @@ class Review
 	public function setRating(int $rating): self
 	{
 		$this->rating = $rating;
+
 		return $this;
 	}
 
@@ -80,6 +86,7 @@ class Review
 	public function setUser(User $user): self
 	{
 		$this->user = $user;
+
 		return $this;
 	}
 
@@ -91,6 +98,7 @@ class Review
 	public function setWebsite(Website $website): self
 	{
 		$this->website = $website;
+
 		return $this;
 	}
 }

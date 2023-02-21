@@ -68,6 +68,6 @@ class WebsiteImageStorage implements EntityStorageInterface
 
 	private function getPath(object $entity): string
 	{
-		return self::DIRECTORY_NAME . '/' . $entity->getImageName();
+		return self::DIRECTORY_NAME.'/'.$entity->getImageName();
 	}
 }

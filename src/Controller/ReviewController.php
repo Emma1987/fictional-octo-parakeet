@@ -15,6 +15,7 @@ class ReviewController extends AbstractAppController
 {
 	/**
 	 * @Route("/review/{id}/edit", name="review_edit")
+	 *
 	 * @IsGranted("REVIEW_EDIT")
 	 */
 	public function edit(Request $request, Review $review): Response
@@ -26,6 +27,7 @@ class ReviewController extends AbstractAppController
 			$this->entityManager->flush();
 
 			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+
 			return $this->redirectToRoute('website_view', ['id' => $review->getWebsite()->getId()]);
 		}
 

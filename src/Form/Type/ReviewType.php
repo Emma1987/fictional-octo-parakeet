@@ -21,7 +21,7 @@ class ReviewType extends AbstractType
 					'html5' => true,
 				])
 				->add('comment', TinymceType::class, [
-					'required' => false
+					'required' => false,
 				])
 			)
 			->add('save', SubmitType::class, [

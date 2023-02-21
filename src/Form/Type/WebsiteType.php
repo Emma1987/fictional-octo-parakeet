@@ -18,12 +18,8 @@ class WebsiteType extends AbstractType
 	{
 		$builder
 			->add($builder->create('website', SectionType::class)
-				->add('name', TextType::class, [
-
-				])
-				->add('url', TextType::class, [
-
-				])
+				->add('name', TextType::class, [])
+				->add('url', TextType::class, [])
 				->add('category', EntityType::class, [
 					'class' => Category::class,
 					'choice_label' => 'name',

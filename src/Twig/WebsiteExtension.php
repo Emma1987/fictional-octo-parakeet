@@ -9,7 +9,6 @@ use Twig\TwigFilter;
 
 class WebsiteExtension extends AbstractExtension
 {
-
 	private WebsiteImageStorage $imageStorage;
 
 	public function __construct(WebsiteImageStorage $imageStorage)

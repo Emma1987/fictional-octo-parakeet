@@ -11,9 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- *
- */
 class WebsiteController extends AbstractAppController
 {
 	/**
@@ -32,6 +29,7 @@ class WebsiteController extends AbstractAppController
 			$this->entityManager->flush();
 
 			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+
 			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 		}
 
@@ -102,10 +100,12 @@ class WebsiteController extends AbstractAppController
 			$this->entityManager->flush();
 
 			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+
 			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 		}
 
 		$this->addFlash('error', $this->translator->trans('flashMessages.formError', [], 'messages'));
+
 		return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 	}
 }

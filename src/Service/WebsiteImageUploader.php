@@ -51,13 +51,14 @@ class WebsiteImageUploader
 			return null;
 		}
 		$end = stripos($ogImageHtml, '"', $start);
+
 		return substr($ogImageHtml, $start, $end - $start);
 	}
 
 	private function uploadImage(Website $website, string $fileUrl): void
 	{
 		$ext = substr($fileUrl, strrpos($fileUrl, '.') + 1);
-		$fileName = $this->slugify->slugify($website->getName(), '_') . '.' . $ext;
+		$fileName = $this->slugify->slugify($website->getName(), '_').'.'.$ext;
 		$website->setImageName($fileName);
 
 		$response = $this->httpClient->request(Request::METHOD_GET, $fileUrl);
