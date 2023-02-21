@@ -25,6 +25,10 @@ website:
             title: 'Supprimer votre avis'
             text: 'Etes vous sûr de vouloir supprimer votre avis sur ce site ?'
             confirmBtn: 'Confirmer'
+    create:
+        title: 'Ajouter un nouveau site / application'
+    sections:
+        website: 'Informations'
 category:
     list:
         title: 'Liste des catégories'
