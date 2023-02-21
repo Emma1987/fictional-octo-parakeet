@@ -18,7 +18,7 @@ class RefreshWebsiteImageCron implements CronInterface
 		$this->imageUploader = $imageUploader;
 	}
 
-	public function __invoke()
+	public function __invoke(): void
 	{
 		$websites = $this->entityManager->getRepository(Website::class)->findAll();
 

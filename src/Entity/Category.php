@@ -27,6 +27,8 @@ class Category
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Website", mappedBy="category")
+	 *
+	 * @var Collection<int,Website>
 	 */
 	private Collection $websites;
 
@@ -52,6 +54,9 @@ class Category
 		return $this;
 	}
 
+	/**
+	 * @return Collection<int,Website>
+	 */
 	public function getWebsites(): Collection
 	{
 		return $this->websites;
@@ -69,7 +74,7 @@ class Category
 	public function removeWebsite(Website $website): self
 	{
 		if ($this->websites->contains($website)) {
-			$this->websites->remove($website);
+			$this->websites->removeElement($website);
 		}
 
 		return $this;

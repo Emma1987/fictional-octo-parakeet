@@ -50,6 +50,8 @@ class Website
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="website")
+	 *
+	 * @var Collection<int,Review>
 	 */
 	private Collection $reviews;
 
@@ -104,6 +106,9 @@ class Website
 		return $this;
 	}
 
+	/**
+	 * @return Collection<int,Review>
+	 */
 	public function getReviews(): Collection
 	{
 		return $this->reviews;
