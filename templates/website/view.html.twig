@@ -23,6 +23,11 @@
 				<span class="h4">{% trans %}website.view.website_card.title{% endtrans %}</span>
 			</div>
 			<div class="card-body">
+				{% if website.imageName %}
+					<div class="mb-3 website-logo">
+						<img src="{{ website|getImageUrl }}" alt="Logo site">
+					</div>
+				{% endif %}
 				<div class="mb-2">
 					<i class="me-2" data-feather="target"></i>{{ website.name }}
 				</div>

@@ -22,3 +22,28 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Storage\WebsiteImageStorage:
+        arguments:
+            - '@League\Flysystem\Filesystem'
+            - '%env(STORAGE_CDN_URL)%'
+
+    Aws\S3\S3Client:
+        class: Aws\S3\S3Client
+        arguments:
+            - credentials:
+                  key: '%env(STORAGE_AUTH_KEY)%'
+                  secret: '%env(STORAGE_AUTH_SECRET)%'
+              endpoint: '%env(STORAGE_ENDPOINT)%'
+              region: '%env(STORAGE_REGION)%'
+              version: '%env(STORAGE_VERSION)%'
+
+    League\Flysystem\AwsS3V3\AwsS3V3Adapter:
+        class: League\Flysystem\AwsS3V3\AwsS3V3Adapter
+        arguments:
+            - '@Aws\S3\S3Client'
+            - '%env(STORAGE_BUCKET)%'
+
+    League\Flysystem\Filesystem:
+        class: League\Flysystem\Filesystem
+        arguments:
+            - '@League\Flysystem\AwsS3V3\AwsS3V3Adapter'

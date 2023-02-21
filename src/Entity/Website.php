@@ -6,6 +6,7 @@ use App\Entity\Security\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WebsiteRepository")
@@ -21,13 +22,25 @@ class Website
 
 	/**
 	 * @ORM\Column(type="string", length=255)
+	 * @Assert\NotBlank()
+	 * @Assert\Length(
+	 *     min = 2,
+	 *     max = 255,
+	 * )
 	 */
 	private ?string $name = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255, unique=true)
+	 * @Assert\NotBlank()
+	 * @Assert\Url()
 	 */
 	private ?string $url = null;
+
+	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private ?string $imageName = null;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="website")
@@ -68,6 +81,17 @@ class Website
 	public function setUrl(string $url): self
 	{
 		$this->url = $url;
+		return $this;
+	}
+
+	public function getImageName(): ?string
+	{
+		return $this->imageName;
+	}
+
+	public function setImageName(?string $imageName): self
+	{
+		$this->imageName = $imageName;
 		return $this;
 	}
 

@@ -23,4 +23,5 @@ return [
     Eckinox\AdminUiBundle\EckinoxAdminUiBundle::class => ['all' => true],
     Eckinox\AppBundle\EckinoxAppBundle::class => ['all' => true],
     Eckinox\TinymceBundle\TinymceBundle::class => ['all' => true],
+	Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle::class => ['all' => true],
 ];

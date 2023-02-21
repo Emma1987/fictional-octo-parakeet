@@ -25,3 +25,7 @@ a {
 .min-width-50 {
 	min-width: 50%;
 }
+
+.website-logo img {
+	max-width: 200px
+}
