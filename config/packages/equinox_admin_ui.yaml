@@ -4,7 +4,13 @@ eckinox_admin_ui:
             sidebar:
                 dashboard:
                     children:
-                        list:
+                        application:
                             label: Sites / Applications
                             icon: star
-                            route_name: website_list
+                            children:
+                                list:
+                                    label: Liste
+                                    route_name: website_list
+                                create:
+                                    label: Nouveau
+                                    route_name: website_create

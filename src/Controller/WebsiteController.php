@@ -5,12 +5,41 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Website;
 use App\Form\Type\ReviewType;
+use App\Form\Type\WebsiteType;
+use App\Service\WebsiteImageUploader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ *
+ */
 class WebsiteController extends AbstractAppController
 {
+	/**
+	 * @Route("/website/create", name="website_create")
+	 */
+	public function createWebsite(Request $request, WebsiteImageUploader $imageUploader): Response
+	{
+		$website = new Website();
+		$form = $this->createForm(WebsiteType::class, $website);
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$imageUploader->updateImage($website);
+
+			$this->entityManager->persist($website);
+			$this->entityManager->flush();
+
+			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
+		}
+
+		return $this->render('website/create.html.twig', [
+			'form' => $form->createView(),
+		]);
+	}
+
 	/**
 	 * @Route("/public/website/list", name="website_list")
 	 */

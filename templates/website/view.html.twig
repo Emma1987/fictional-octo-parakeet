@@ -23,6 +23,11 @@
 				<span class="h4">{% trans %}website.view.website_card.title{% endtrans %}</span>
 			</div>
 			<div class="card-body">
+				{% if website.imageName %}
+					<div class="mb-3 website-logo">
+						<img src="{{ website|getImageUrl }}" alt="Logo site">
+					</div>
+				{% endif %}
 				<div class="mb-2">
 					<i class="me-2" data-feather="target"></i>{{ website.name }}
 				</div>
@@ -50,7 +55,7 @@
 						{% trans %}website.view.review_card.title{% endtrans %}
 					</span>
 					{% if reviewId %}
-						<a href="{{ path('review_delete', {id: reviewId}) }}" id="delete-review">
+						<a href="{{ path('review_delete', {id: reviewId}) }}" class="delete-review">
 							<i class="me-2" data-feather="trash-2"></i>
 						</a>
 					{% endif %}
@@ -74,22 +79,36 @@
 		</div>
 		<div class="card-body">
 			{% for review in website.reviews %}
-				<div class="single-review">
-					<div class="d-flex align-items-center mb-2">
-						<span class="me-1 mt-1">{{ review.rating }}</span><i data-feather="star"></i>
-						<span class="mx-1">-</span>
-						<em>
-							{% trans with {
-								"%firstName%": review.user.firstName,
-								"%lastName%": review.user.lastName|u.truncate(2, '.')
-							} %}website.view.community_card.author{% endtrans %}
-						</em>
+				<div class="d-flex justify-content-between single-review">
+					<div>
+						<div class="d-flex align-items-center mb-2">
+							<span class="me-1 mt-1">{{ review.rating }}</span><i data-feather="star"></i>
+							<span class="mx-1">-</span>
+							<em>
+								{% trans with {
+									"%firstName%": review.user.firstName,
+									"%lastName%": review.user.lastName|u.truncate(2, '.')
+								} %}website.view.community_card.author{% endtrans %}
+							</em>
+						</div>
+						{{ review.comment|raw }}
 					</div>
-					{{ review.comment|raw }}
-					{% if not loop.last %}
-						<hr/>
-					{% endif %}
+					<div>
+						{% if is_granted('REVIEW_EDIT') %}
+							<a href="{{ path('review_edit', {id: review.id}) }}">
+								<i class="me-2" data-feather="edit"></i>
+							</a>
+						{% endif %}
+						{% if is_granted('REVIEW_DELETE') %}
+							<a href="{{ path('review_delete', {id: review.id}) }}" class="delete-review">
+								<i class="me-2" data-feather="trash-2"></i>
+							</a>
+						{% endif %}
+					</div>
 				</div>
+				{% if not loop.last %}
+					<hr/>
+				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

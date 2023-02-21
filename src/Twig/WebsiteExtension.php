@@ -3,15 +3,25 @@
 namespace App\Twig;
 
 use App\Entity\Website;
+use App\Storage\WebsiteImageStorage;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class WebsiteExtension extends AbstractExtension
 {
-	public function getFilters()
+
+	private WebsiteImageStorage $imageStorage;
+
+	public function __construct(WebsiteImageStorage $imageStorage)
+	{
+		$this->imageStorage = $imageStorage;
+	}
+
+	public function getFilters(): array
 	{
 		return [
 			new TwigFilter('getCategoriesFromWebsites', [$this, 'getCategoriesFromWebsites']),
+			new TwigFilter('getImageUrl', [$this, 'getImageUrl']),
 		];
 	}
 
@@ -24,5 +34,10 @@ class WebsiteExtension extends AbstractExtension
 		}
 
 		return $categories;
+	}
+
+	public function getImageUrl(Website $website)
+	{
+		return $this->imageStorage->getUrl($website);
 	}
 }
