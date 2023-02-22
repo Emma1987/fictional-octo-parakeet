@@ -99,7 +99,7 @@
 																						{{ sublink.label }}
 																					</a>
 																					<ul id="menu-{{ mainkey }}-{{ subkey }}" class="sidebar-dropdown list-unstyled collapse">
-																						{% for subsubkey, subsublink in sublink.children %}
+																						{% for subsublink in sublink.children %}
 																							{% if subsublink.template is defined %}
 																								{% include subsublink.template %}
 																							{% else %}
@@ -152,26 +152,26 @@
 
 				{% set custom_class = custom_class|default('') %}
 				{% set menu_key_prefix = menu_key_prefix|default('admin_') %}
-				{% set megamenu = get_parameter('eckinox_admin_ui.menus', 'mega')  %}
+				{% set megamenu = get_parameter('eckinox_admin_ui.menus', 'mega') %}
 				{% if megamenu|length > 0 %}
 					<ul class="navbar-nav">
 						{% for key, menu in megamenu %}
 							{% if menu.show_in_header is defined and menu.show_in_header == true and menu_is_allowed(menu.sections) %}
 								{% if menu_key_prefix is empty or menu_key_prefix in key %}
 									<li class="nav-item px-2 dropdown">
-										<a class="nav-link dropdown-toggle {{custom_class.nav_link|default('')}}" href="#" id="mega-menu-{{ key }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<a class="nav-link dropdown-toggle {{ custom_class.nav_link|default('') }}" href="#" id="mega-menu-{{ key }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											{% if menu.icon is defined %}<i class="align-middle me-1" data-feather="{{ menu.icon }}"></i> {% endif %}{{ menu.label }}
 										</a>
-										<div class="dropdown-menu dropdown-menu-start dropdown-mega {{custom_class.dropdown_menu|default('')}}" aria-labelledby="mega-menu-{{ key }}">
+										<div class="dropdown-menu dropdown-menu-start dropdown-mega {{ custom_class.dropdown_menu|default('') }}" aria-labelledby="mega-menu-{{ key }}">
 											<div class="d-md-flex align-items-start justify-content-start">
-												{% for key, section in menu.sections %}
+												{% for section in menu.sections %}
 													{% if menu_is_allowed(section.children) %}
-														<div class="dropdown-mega-list {{custom_class.dropdown_mega_list|default('')}}">
-															<div class="dropdown-header {{custom_class.dropdown_header|default('')}}">{% if section.icon is defined %}<i class="align-middle me-1" data-feather="{{ section.icon }}"></i> {% endif %}{{ section.label|trans }}</div>
-															{% for key, link in section.children %}
+														<div class="dropdown-mega-list {{ custom_class.dropdown_mega_list|default('') }}">
+															<div class="dropdown-header {{ custom_class.dropdown_header|default('') }}">{% if section.icon is defined %}<i class="align-middle me-1" data-feather="{{ section.icon }}"></i> {% endif %}{{ section.label|trans }}</div>
+															{% for link in section.children %}
 																{% if not link.privilege|default('') or is_granted(link.privilege) %}
 																	{% if link.route_name is defined %}
-																		<a class="dropdown-item {{custom_class.dropdown_item|default('')}}" href="{{ path(link.route_name, link.route_parameters) }}">
+																		<a class="dropdown-item {{ custom_class.dropdown_item|default('') }}" href="{{ path(link.route_name, link.route_parameters) }}">
 																			{% if link.icon is defined %}<i class="align-middle" data-feather="{{ link.icon }}"></i> {% endif %}{{ link.label|trans }}
 																		</a>
 																	{% elseif link.href is defined %}
