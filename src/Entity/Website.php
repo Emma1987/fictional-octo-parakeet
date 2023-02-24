@@ -15,14 +15,18 @@ class Website
 {
 	/**
 	 * @ORM\Id
+	 *
 	 * @ORM\GeneratedValue
+	 *
 	 * @ORM\Column(type="integer")
 	 */
-    private ?int $id = null;
+	private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
+	 *
 	 * @Assert\NotBlank()
+	 *
 	 * @Assert\Length(
 	 *     min = 2,
 	 *     max = 255,
@@ -32,7 +36,9 @@ class Website
 
 	/**
 	 * @ORM\Column(type="string", length=255, unique=true)
+	 *
 	 * @Assert\NotBlank()
+	 *
 	 * @Assert\Url()
 	 */
 	private ?string $url = null;
@@ -44,6 +50,8 @@ class Website
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="website")
+	 *
+	 * @var Collection<int,Review>
 	 */
 	private Collection $reviews;
 
@@ -57,10 +65,10 @@ class Website
 		$this->reviews = new ArrayCollection();
 	}
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
 	public function getName(): ?string
 	{
@@ -70,6 +78,7 @@ class Website
 	public function setName(string $name): self
 	{
 		$this->name = $name;
+
 		return $this;
 	}
 
@@ -81,6 +90,7 @@ class Website
 	public function setUrl(string $url): self
 	{
 		$this->url = $url;
+
 		return $this;
 	}
 
@@ -92,9 +102,13 @@ class Website
 	public function setImageName(?string $imageName): self
 	{
 		$this->imageName = $imageName;
+
 		return $this;
 	}
 
+	/**
+	 * @return Collection<int,Review>
+	 */
 	public function getReviews(): Collection
 	{
 		return $this->reviews;
@@ -118,6 +132,7 @@ class Website
 	public function setCategory(Category $category): self
 	{
 		$this->category = $category;
+
 		return $this;
 	}
 
@@ -129,10 +144,11 @@ class Website
 
 		$ratings = array_reduce($this->reviews->toArray(), function ($carry, Review $review) {
 			$carry += $review->getRating();
+
 			return $carry;
 		});
 
-		return round(($ratings / $this->reviews->count()), 1);
+		return round($ratings / $this->reviews->count(), 1);
 	}
 
 	public function getReviewByUser(User $user): Review

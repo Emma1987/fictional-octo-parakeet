@@ -9,7 +9,6 @@ use Twig\TwigFilter;
 
 class WebsiteExtension extends AbstractExtension
 {
-
 	private WebsiteImageStorage $imageStorage;
 
 	public function __construct(WebsiteImageStorage $imageStorage)
@@ -25,6 +24,11 @@ class WebsiteExtension extends AbstractExtension
 		];
 	}
 
+	/**
+	 * @param array<int,Website> $websites
+	 *
+	 * @return array<string,string>
+	 */
 	public function getCategoriesFromWebsites(array $websites): array
 	{
 		$categories = [];
@@ -36,7 +40,7 @@ class WebsiteExtension extends AbstractExtension
 		return $categories;
 	}
 
-	public function getImageUrl(Website $website)
+	public function getImageUrl(Website $website): string
 	{
 		return $this->imageStorage->getUrl($website);
 	}

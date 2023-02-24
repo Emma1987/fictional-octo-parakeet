@@ -6,16 +6,25 @@ use App\Entity\Category;
 use App\Entity\Website;
 use App\Form\Type\ReviewType;
 use App\Form\Type\WebsiteType;
+use App\Repository\WebsiteRepository;
 use App\Service\WebsiteImageUploader;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- *
- */
 class WebsiteController extends AbstractAppController
 {
+	private WebsiteRepository $websiteRepository;
+
+	public function __construct(EntityManagerInterface $entityManager, TranslatorInterface $translator, WebsiteRepository $websiteRepository)
+	{
+		parent::__construct($entityManager, $translator);
+
+		$this->websiteRepository = $websiteRepository;
+	}
+
 	/**
 	 * @Route("/website/create", name="website_create")
 	 */
@@ -32,6 +41,7 @@ class WebsiteController extends AbstractAppController
 			$this->entityManager->flush();
 
 			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+
 			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 		}
 
@@ -45,7 +55,7 @@ class WebsiteController extends AbstractAppController
 	 */
 	public function websiteList(): Response
 	{
-		$websites = $this->entityManager->getRepository(Website::class)->findAllWithReviewAndCategory();
+		$websites = $this->websiteRepository->findAllWithReviewAndCategory();
 
 		return $this->render('website/list.html.twig', [
 			'websites' => $websites,
@@ -58,7 +68,7 @@ class WebsiteController extends AbstractAppController
 	 */
 	public function websiteListByCategory(Category $category): Response
 	{
-		$websites = $this->entityManager->getRepository(Website::class)->findAllByCategoryWithWebsites($category);
+		$websites = $this->websiteRepository->findAllByCategoryWithWebsites($category);
 
 		return $this->render('website/list.html.twig', [
 			'websites' => $websites,
@@ -102,10 +112,12 @@ class WebsiteController extends AbstractAppController
 			$this->entityManager->flush();
 
 			$this->addFlash('success', $this->translator->trans('flashMessages.reviewSaved', [], 'messages'));
+
 			return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 		}
 
 		$this->addFlash('error', $this->translator->trans('flashMessages.formError', [], 'messages'));
+
 		return $this->redirectToRoute('website_view', ['id' => $website->getId()]);
 	}
 }

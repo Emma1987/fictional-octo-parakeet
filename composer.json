@@ -59,8 +59,8 @@
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
             "symfony/runtime": true,
-            "eckinox/installer-plugin": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "eckinox/installer-plugin": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -106,6 +106,7 @@
         }
     },
     "require-dev": {
+        "eckinox/eckinox-cs": "^1.7",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",

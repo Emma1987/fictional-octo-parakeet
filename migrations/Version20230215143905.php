@@ -12,20 +12,20 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20230215143905 extends AbstractMigration
 {
-    public function getDescription(): string
-    {
-        return '';
-    }
+	public function getDescription(): string
+	{
+		return '';
+	}
 
-    public function up(Schema $schema): void
-    {
-        // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE review ADD rating INT NOT NULL');
-    }
+	public function up(Schema $schema): void
+	{
+		// this up() migration is auto-generated, please modify it to your needs
+		$this->addSql('ALTER TABLE review ADD rating INT NOT NULL');
+	}
 
-    public function down(Schema $schema): void
-    {
-        // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE review DROP rating');
-    }
+	public function down(Schema $schema): void
+	{
+		// this down() migration is auto-generated, please modify it to your needs
+		$this->addSql('ALTER TABLE review DROP rating');
+	}
 }

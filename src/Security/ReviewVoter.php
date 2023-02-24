@@ -39,7 +39,7 @@ class ReviewVoter extends Voter
 		/** @var Review $review */
 		$review = $subject;
 
-		return match($attribute) {
+		return match ($attribute) {
 			self::DELETE => $this->canDelete($review, $user),
 			default => throw new \LogicException('This code should not be reached!')
 		};

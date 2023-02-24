@@ -13,10 +13,12 @@ class Category
 {
 	/**
 	 * @ORM\Id
+	 *
 	 * @ORM\GeneratedValue
+	 *
 	 * @ORM\Column(type="integer")
 	 */
-    private ?int $id = null;
+	private ?int $id = null;
 
 	/**
 	 * @ORM\Column(type="string", length=80, unique=true)
@@ -25,6 +27,8 @@ class Category
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Website", mappedBy="category")
+	 *
+	 * @var Collection<int,Website>
 	 */
 	private Collection $websites;
 
@@ -33,10 +37,10 @@ class Category
 		$this->websites = new ArrayCollection();
 	}
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
 	public function getName(): ?string
 	{
@@ -46,9 +50,13 @@ class Category
 	public function setName(string $name): self
 	{
 		$this->name = $name;
+
 		return $this;
 	}
 
+	/**
+	 * @return Collection<int,Website>
+	 */
 	public function getWebsites(): Collection
 	{
 		return $this->websites;
@@ -66,7 +74,7 @@ class Category
 	public function removeWebsite(Website $website): self
 	{
 		if ($this->websites->contains($website)) {
-			$this->websites->remove($website);
+			$this->websites->removeElement($website);
 		}
 
 		return $this;
